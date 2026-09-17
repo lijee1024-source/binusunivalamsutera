@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BINUS University Alam Sutera</title>
+  
+  <!-- Google Fonts, FontAwesome, & AOS Animation -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #0f172a;
+      --card-bg: #fff5f5;
+      --primary: #dc2626;      /* Merah Utama */
+      --secondary: #991b1b;    /* Merah Gelap */
+      --accent: #ef4444;       /* Merah Terang / Aksen */
+      --border-color: #fecaca;
+    }
+
+    body.dark-mode {
+      --bg-color: #0f172a;
+      --text-color: #f8fafc;
+      --card-bg: #1e293b;
+      --primary: #ef4444;
+      --secondary: #f87171;
+      --border-color: #334155;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+      overflow-x: hidden;
+    }
+
+    /* Running Text (Marquee) */
+    .ticker-bar {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 8px 0;
+      font-size: 0.9rem;
+      font-weight: 500;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1001;
+      overflow: hidden;
+    }
+    .ticker-content {
+      display: inline-block;
+      white-space: nowrap;
+      padding-left: 100%;
+      animation: marquee 25s linear infinite;
+    }
+    @keyframes marquee {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-100%, 0); }
+    }
+
+    /* Header & Nav */
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      position: fixed;
+      width: 100%;
+      top: 36px;
+      z-index: 1000;
+    }
+
+    body.dark-mode header {
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .btn-spmb {
+      background: var(--primary);
+      color: #fff !important;
+      padding: 0.5rem 1.3rem;
+      border-radius: 25px;
+      box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+      transition: transform 0.3s !important;
+    }
+
+    .btn-spmb:hover {
+      transform: translateY(-2px);
+      background: var(--secondary);
+    }
+
+    /* Style Switcher Tombol Bahasa & Mode Malam */
+    .action-btns {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-lang {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      padding: 4px 10px;
+      border-radius: 15px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.3s;
+    }
+
+    .btn-lang:hover {
+      border-color: var(--primary);
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-size: 1.3rem;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(135deg, rgba(15,23,42,0.85), rgba(185, 28, 28, 0.75)), 
+                  url('https://www.binus.edu/wp-content/uploads/2019/10/BINUS-ALAM-SUTERA.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      padding-top: 40px;
+    }
+
+    .hero-content h1 {
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      max-width: 750px;
+      margin: 0 auto 2rem;
+      color: #e2e8f0;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 0.9rem 2.2rem;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 30px;
+      box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.05);
+      background: var(--secondary);
+    }
+
+    section {
+      padding: 6rem 2rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title h2::after {
+      content: '';
+      width: 50%;
+      height: 4px;
+      background: var(--accent);
+      position: absolute;
+      bottom: -8px;
+      left: 25%;
+      border-radius: 2px;
+    }
+
+    /* Profil Grid */
+    .profil-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .profil-img img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    /* Layanan Grid */
+    .layanan-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .layanan-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .layanan-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .layanan-card i {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    /* Galeri */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 240px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent, rgba(153, 27, 27, 0.9));
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-item:hover img { transform: scale(1.1); }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    /* Form SPMB */
+    .spmb-box {
+      background: var(--card-bg);
+      padding: 3rem;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-color);
+      color: var(--text-color);
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+    }
+
+    /* Kontak & Maps */
+    .kontak-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      border-radius: 12px;
+      border: none;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: var(--text-color);
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: var(--primary);
+    }
+
+    /* Floating WA Button */
+    .wa-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 25px;
+      right: 25px;
+      background-color: #25d366;
+      color: #FFF;
+      border-radius: 50px;
+      text-align: center;
+      font-size: 32px;
+      box-shadow: 2px 2px 15px rgba(0,0,0,0.3);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: transform 0.3s;
+    }
+
+    .wa-float:hover {
+      transform: scale(1.1);
+      color: #fff;
+    }
+
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: #fff;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      margin-top: 4rem;
+    }
+
+    footer p { color: #94a3b8; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-content h1 { font-size: 2.2rem; }
+      .spmb-box { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Running Text -->
+  <div class="ticker-bar">
+    <div class="ticker-content" id="tickerText">
+      📢 <b>PENGUMUMAN:</b> Pendaftaran Mahasiswa Baru (PMB) BINUS University Alam Sutera TA 2026/2027 telah dibuka! Dapatkan beasiswa dan jalur konsultasi pendaftaran melalui kontak kami.
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAACUCAMAAABV5TcGAAAA7VBMVEX///8jHyCRj5D2ix4Al9oAAAC8vLzq6ek7OzsAk9kAldkAidYcGBkAkdjU1NSOjI3V6vi0s7Tg4OA4NTb5+fnJycmlpKQxLi+w1u+Gg4Tm8/vG4fRFqOBwteRfreHN5PVDQkJ7eHqcmpuFvecVDxGSxulbsuMnndz1ggDYLSZwbm/VAAD99PQAg9T1ewBWVVX82L75uIr94s74qGb5s3z10dAMAAVjYWIAe9L+8un6yKf5vpX3nFP2kjf2lUT2jCzga2rcSUTnkpL75+beVE/lgX7XIxrdlJOrKCQqPT7ObGzZNzbso6Hwu7m3BgCOWNQrAAARjklEQVR4nO2dC3+bRtaHERYQIS4aPIOFLraFJCsrx1GcOHadS5Mmad53d7v7/T/OnjMXbgIZt5ZlXP1/u60FzIh5OLcZQNW0vyjL8P5qF89Jexw57XHktMeR0x5HTnscOe1x5LTHkdMeR057HDntceS0x5HTA+GgjDD6EB3tWA+EI4ijeI8j7SbUwz0O2UcQWB7z9ji4KPP15xKPizioFXgB1QLGrLpdUDOK2IOf2G6UwWEFzCRhTDyPEWLeI1EEphls5eQeXwqHxUgc+1FEPItSiAWWFwQ1gVAWx8/KWSwzjHUfRCyOgAYkhk9xvS7AWfzng4OxWAcW+P8QQodHgIlnsiCo6y7UnEyeS+xgxlJHgZ+gfUS+Pwl5ELU8LYiiWlfd8jwVdy3Lam6+hRQ5MSacBoEB0Qj+wJxpsXjih4FGKfyP3jW+jHVQf6LXzkhPS9QiYBERxxGZMGovBhw6REUa8KsdBF6IqMgdPDKJlupR3EgcNDB9HL3A4cdhHEVxyMDsId3yqGGFcWh6JYMr2gtlYSgTLSUhaSAOBUPhwLCh+6YFLABLFEKitapKiYCQ5xI4pQJTFzASHAJJrEeRj3+CsehRBQ8Gxcnjnu52BYFSDDqPw48JVBvCUiCoQHVa3tyLY/NxT3irYmEKI4eDBBaLkERosg01aWb+6jERZe4xwXlisoiegZG3jpgHTxjtnak19GN0pVCPLJ6um1qVstjP0UhCKQZQM6hZRNF4InBEE6vBVakVFmAIHOgggOLOeisVE17iMRP/BTPaJjqLpxdhII5lFJZVF5WSmcXzI7O59Ti6eLRGA+Yo916q8Hzf1BqPwwqjAgqAE/6JZRvm6xwHlG3NxRHoeRo+lFr3uTPieUgOZjMeTupwARFCDXza2glvVV7OUcAwwns6yYTfR7GghKfFzNI85cIGFOPJLTN6e3tby0Zgwk+5x/kcR9RgHDADz0bPWBnG2zcfPl5dXX788Obtxva4pkMITPAsyySEwr+gKsWNMtGmhzUBjkWiDAyoMMR66JvLTwcvhQ4+Xb7Z0AEJ4yCEyh2ijRkSOWcJwrhQe7G1LU9RFkkdJYGhvb36DBiUXr78fFVtIeATXgRGFUUmOEtl3YH7tzmQB1GGBgxATcw+fE5ZSCK/fqjqAqzDAuvwwtAz49AT6x0BCQu3IZtgHTSlAeFPnf/Hl1/efSkAeXlwWdUHSODA9Ap+I3EUEnWNZdWdK4mivp9eug+vP2r01WXBPg5ga6UiPzR9vrAOVSl3Fr2BVSlLaGSWdN+8vuL/fld0mNfVAXXCY4enpXOWaNI4HF6kTCMT5G5ffxHD/vilaB8Hr9a6EDcXNAZlKWMw66UW8/CWA95caYB3ZBXI+byvZ0vQdwmONRoH74pdeP7EjDGzgLNA5ogjH/4koapKl02oNKSCWNLIPad0+xpGjRterTnLwcHnYrrFEBFC0Ih8cBYfEq0OFS4hDaxKaShp5B9TugIIXy7f3r69WjeOg4OrQicBZldehhHILLwMw4os5As+ZtigJ6BkUvELd9FEVv38qZhoxfZPt/lOApMEjBALig0oOAKcxmLdIYLGE4wdr96/X49/KBlGo8JtsbcvVZlRqs+F5OLpEzOtSjOZ5XEFo6xF/vvX3358+16yw5I5pXiT8EM5hkSF2iOIIxYCBx/rDl/UHfqj1+Lfv/748a38quf1+/nPnz//L1iXPuGKWGYbkimNGBlvucSb2UpeAJPWwAoCapoMn3nCThifzj6qvuIo/6iB4x+gn/9/uKZTp4WazY7SbS008nd34IBYym5ecE2YHpqhzqstXDzTYxbqITk9ffHI+udPHOXXGjh+wJHn/2JmUZMlV5zbE9TDYclGDPIpgeCDOCbJjDZY+66ti3Ecv9fA8f78/Py392ubTVlwrK8A1nCWRIwwZor79ZhZIOdCktlFMsFR/nt9lCV69cd/1mOMJQowvyTmfaxIKUppKKWEhYTBxJXEOhYbuGlXlcb3b3/UiaQVMgWNsKRmfLMZx5ck0cKcHp0lllVpFIqlY//JlRp3ShpHaUK83ewraRlmRsSMCYRStI4gjglfOtb15uHw1ub0GZXMVDJKinSo4khgMky0EFktkz8hRSHnPt4wHkpiBcwvLx7fvq7jK7hQQqSzxImzNFKWnLtVrFx+2mAeaoLPsAdCJoBDTvCb+/qOmthXTL43mYeY31PG28PkzfMYg8qUYSn6iCN4UDG55lO1/2MVj5ciy6onhGKSqixJNUQyzVY+YU+vynnIJVTla/yhfamowe8yCRx6WHnAbSkPScOLSx4DaWA+SXQnDu32cp3Ha16eU1L2UExzPUWTaWGDs6DeFm7DvTzgKTbwoyIMPdrAtQkSz4BVh1Iu+uHXDI3P/I4kDUtMw3/ydxrv0B2JVgnv4X/6FfTuEvMrLX147E89L/W0RDeXYTndgngbi+lrfuL78XN4lVyudtQvq2kAMEpM43m8AalmtDW93vLMMhh+1UP6jZMqxGqMh3pm6K89jAzJlTS48iqIxvV4AItYX2fxvGCALHWvesNDB5ZHwjhqTdZgRBGp+0pxUxTIO5J6eW6wGOFvEmffdlIw/GcHA2RNlIHoYfbtGxp4JNbF22+6XsThRz5r8JuwG2T56XNQUeTH+PYOvuwW5WJFDoc/aX7RVS0zlzH8kvyRwYF7G/d00/1khWVpYx0HoojJMzYMpYCUJtIcDnx54dlUXHfJMkkI2aKMCV/mMnzC/gZ2kYryX23R+c8vpKt9PjcK0zSewPzdwuckHjOhUctjzDRxDTjElWDTZMzDN0RLfwopCAsimZfxLbUxSI/MPFNjEbk7c2h6/0v1nDagLNT54wYTPXzk8EXlgyyZZ7pKcZCWkdN163C1VDnYkxsdNCsiP6S3Kr1DuQn+DmTz1AJVz4dqC5mczuAIEGxtraKdPCCQqhSHeSgelknlzAxnJW75eobYciRwyA/JHT/vdMa3OPB34Ih+UhyyZ+dUbKHRkeFkv+X6cLnTtx5q4kBdi0tahqM1O1J2fh8cdGmsc2/t8gcP7oGjZfCHaktxtIwbGQ3ugyOarX/JbLXLPHcfHA4PF+U4Wip83AMHe7H+NU5rp+v2G3E4MyFl0gaeagWOliFDS30cE0M5CA+4/ODZ8lGGXaVNOGYT+ZmpYeFd/CocLYO7S30c1o3wFWcFk2iLxaujmeO82G15vBFHcqV0I3WIShyzQ/4zBbVxeCtx5JHKJcHy0Nh8c2jrqodDjnqzdbSMSPtTONIVfxbteE5dD8fyWvg4f/m+EgcPH/VxBCvpLEcxeyrrb5twQOHFRWJpHMvqRCu3BVpw79jRcqDE8+/7Fvx2VCfRzgxx0it+aCkOefxsSeU1r5NZ0rIDc8vRzdrrBI+vzTgcLnnO8rGGUhyHR/Kg0KqPI193AJKjm13/Jl39MgzyId9ZhmMWi+jSmp2aMs7UqkqNwlfMWsvdrjfcoyp1xGyiDIdByJGs3FY395izRMU5izM73SmPOs6iTnlWWaQbRFvmr3S9Ga1m4rQ+p+udvny5uUiXQ1OnzOdwpThCTcaMO3CQAg58eUbV5wr6LicttYp05eROy6vEoZFWLjByHNKDjGQNQ/qUc5r9VhadtlIbNHZZitUrwzRlHqwaR366LnCIGgSqWdVPLC1gVfhWiyxVmjFudliA1MQhPWEjDi3rLhyHdaPyjepnIjesRICwMs8JBDfyfbUG4Gg5NXB4GXfhOKifsSresTQB1bPvxCkQs9UUHJ5aA9yII1uycxxp0XpkWhq1zNW13C0mruxwZhzqcpXe0gWq6+UTxeGs5E2C+HAmbTzYiCNZ0FE4vBfSf2bOUveXh5KG84KP2EL3cIzZKopBE9nyyYZSVXbMDDmoyvUOhcNaGTkcNE4+X2M+lR9kygqFc4nFMJXMHeepJtqiZkeVZZgagmckBZz4vCpZHXacoHJf67opS8eOyJcbcaTRwpGfW2tjdkQZQlPPyu482ukPKdfHMTPES5KbcVBVsUkcWujMiv3INOPdGNetVnFnzf+ww5ZUEwe4d0uWlptxQOll5HBA+jAyQK6No3ROAkCy+3BhZccPVpTfoz2cOXmdpv+1BU/u4zhC8SGDA5fd+abMlpW6QzGb3RQmrCSzb7ba9c+wvfr239/Xf+6CFlSxM/th/YBcI3w8D39XuuwcAhMfWovLdz6ufjv/x/mPsp//+Fvq/Tn+4EWdH8b4Wwhx/NzjUHr14/x87yyp3n/7+q3W72L8TfTq+1/4XYy99tprr70qNeiB1j5Q/INmt1K1eYB/9LKtNEtt5kcmSppIDfL1/aA/n86HA5p8Vk16eQ1EH4OKc35Y9d1ut6s+TLvdizN+Rgv4qy+3DuGQBT+bk1+6F8f41wgaucng8OARxVYX3VQXczxg/ku6pT1NENMT6MJ13a47lgPDxhcneEaZFtjNgtIp9psAGNrd7i/zLeFY2O22+jBvtzsCx8hu250TsfVkYdsjYRTddmc84ITadlvhop1228bTGxzDX4lcjqPvpltsV2yDJvOuOtR1+8Kyzuw2/8Zht52VfUy1HnTsHkuUg7Hb7oy2QwNx2CkO205xwAkMFI6OwHGicGgA0R6rLjptm1sPx9FxpboCR5djQCE1WzBESLZrww7oR5ghNhY4LrALG0nwvtDu8KJ1+8lJ2p0t+comHO3uvIAjsQ5tCuYxku4Ml9U+TkY0nioNJQ57JD6P4ZsEYoo0F/N5fz4GKse9HI4T3sMx0FjwZngSdAoNbBFZRmApW3KVzThs9ySPI7WOAYxyIS7XAMeWXODuIL92Ajjcqdg2AJsQjYbQpCOa9BfSBhMclB/dB+s843+JCwEt3CnunaOrZOLq4+FodxZ5HKl1cG+Zih7guokLJ3AU+u+KYSSN5qJJuyNDwYlskOCQ7RBHJhPNoYnb4yTtzvAhRl6qahy4g4+kzDrQ+zviuo5haONkRN1i/1kcYOeduegRQk8e3B04KLQFl8Q4quLxNlSJwx6dtcWFKLUOeiENfwDk3GEyIvsMNU7GlcNhS+tA/4Lmx/N0+Hfh0HodaD08QVfZVhzVNuFY4EDtBS23Du3YFRENg76djgg9x+4s+kn/GRxnKnZoc0y/eOQiAXcXDm2KCQztq69tT5tw9CDdueNy6+DjRG8BX1GBPqk77BwOPm7oGTOtSt5nXdsWRLojmjTeiEPrYHYBuNu8r1uNo93DiwiVQq/UOihe2z73lW4mGkKx0Om4iyTY9XNFVSfZMVy4yAi3uQPVeDOOHnZlj060LSpflUJhlFpHT8S+4/6ozDqw9ACzQJwLuQVH5M77qCRMJtbBcRxncsKgP14s2ljujVTjzTi4s9lbKzm4sARw1YepzCUJjgFcwvZoVGYdnM3xADxalYtVmQVi5vHxqK2Ktdy3z/FqXKjGd+DAYmebcVQTOS+pFcaq4FM4hLvY7TLrGOAx/bFru8mWqrpjADq2ZSlf2I/f39Nq4aDd7aYVeRYq9KOldPkZJTgwgaB/l1gH1of22agt3Ev1VVmGDTtJ4Yab04Qiv3MdR6fEOraNAzND2+Yu3TtDR5YTA4UDq+N2qXVoPT7PkgD56W6sSrPm0Qe7kuUcXgKq1XWWreMY8unUtN+fH4NXyFlbikPM0MusAwbAq4dFZgOMaJoKd6Q4hq5cB+AVd8ceY9CdYm1jJ413Hjt4hoCzay86YM2uHFsGB8X9pdYhkmimZM5P8F07jwPTlJwFT3Fe3+lgYgED6+Yn+LLvHVmHRsc8n6Phuwu1NJXiAHdJhpG3DuFI6SpVYflHmA0Yl8KBdYMwDzrvyrIU/tGdJvO/u2PH9q1Do32+Tue63TSJLmCT+mLYXVwclKc3vuh2M5PtwSi3rMetYw5NxnJYuHvBR0x7I/Wd7T5NG2dwdHNdi0N+gfZbxwHqzcfjaVo7afRkOBwm65q94VCuAw/VX/L88LOWb5URlYeofq1h9kOff2cv+y3DQVXXQrDtRB3/P/oD8YkEAtP8AAAAAElFTkSuQmCC" height="90PX">
+      </div>
+      <ul class="nav-links">
+        <li><a href="#beranda" data-key="nav-beranda">Beranda</a></li>
+        <li><a href="#profil" data-key="nav-profil">Profil</a></li>
+        <li><a href="#layanan" data-key="nav-layanan">Layanan</a></li>
+        <li><a href="#kegiatan" data-key="nav-kegiatan">Kegiatan</a></li>
+        <li><a href="#kontak" data-key="nav-kontak">Kontak</a></li>
+        <li><a href="#spmb" class="btn-spmb" data-key="nav-spmb">Admissions</a></li>
+        <li class="action-btns">
+          <!-- Switcher Bahasa -->
+          <button class="btn-lang" id="langToggle">
+            <i class="fa-solid fa-globe"></i> <span id="langText">EN</span>
+          </button>
+          <!-- Switcher Mode Malam -->
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Beranda Section -->
+  <section class="hero" id="beranda" style="max-width: 100%; padding-left:0; padding-right:0;">
+    <div class="hero-content" data-aos="zoom-in">
+      <h1 data-key="hero-title">BINUS University Alam Sutera</h1>
+      <p data-key="hero-desc">Smart Campus Berbasis Teknologi Komputasi & Inovasi Global untuk Membentuk Pemimpin Dunia Digital Masa Depan.</p>
+      <a href="#spmb" class="btn-primary" data-key="hero-btn">Daftar PMB Sekarang <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+  <!-- Profil Section -->
+  <section id="profil">
+    <div class="section-title" data-aos="fade-up">
+      <h2 data-key="profil-title">Profil Kampus</h2>
+    </div>
+    <div class="profil-container">
+      <div class="profil-img" data-aos="fade-right">
+        <img src="https://www.binus.edu/wp-content/uploads/2019/10/BINUS-ALAM-SUTERA.jpg" alt="Gedung BINUS University Alam Sutera">
+      </div>
+      <div class="profil-text" data-aos="fade-left">
+        <h3 data-key="visi-title">Visi & Misi</h3>
+        <p style="margin-bottom: 1rem;" data-key="visi-desc">Menjadi perguruan tinggi berkelas dunia yang membina dan memberdayakan masyarakat dalam membangun serta melayani bangsa.</p>
+        <ul style="list-style: none; line-height: 2;">
+          <li><i class="fa-solid fa-check-circle" style="color: var(--primary);"></i> <span data-key="visi-point1">Program Enrichment 3+1 (Magang, Startup, Riset, Studi Luar Negeri)</span></li>
+          <li><i class="fa-solid fa-check-circle" style="color: var(--primary);"></i> <span data-key="visi-point2">Fasilitas Smart Campus Berteknologi Modern & Green Building</span></li>
+          <li><i class="fa-solid fa-check-circle" style="color: var(--primary);"></i> <span data-key="visi-point3">Kemitraan Industri Global & Akreditasi Internasional</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Layanan Section -->
+  <section id="layanan">
+    <div class="section-title" data-aos="fade-up">
+      <h2 data-key="layanan-title">Layanan Digital & Akademik</h2>
+    </div>
+    <div class="layanan-grid" data-aos="fade-up">
+      <div class="layanan-card">
+        <i class="fa-solid fa-laptop-code"></i>
+        <h4 data-key="layanan-1">BINUS Maya Portal</h4>
+      </div>
+      <div class="layanan-card">
+        <i class="fa-solid fa-briefcase"></i>
+        <h4 data-key="layanan-2">BINUS Career Center</h4>
+      </div>
+      <div class="layanan-card">
+        <i class="fa-solid fa-globe"></i>
+        <h4 data-key="layanan-3">Global Exchange Program</h4>
+      </div>
+      <div class="layanan-card">
+        <i class="fa-solid fa-lightbulb"></i>
+        <h4 data-key="layanan-4">BINUS StartUp Accelerator</h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kegiatan Section -->
+  <section id="kegiatan">
+    <div class="section-title" data-aos="fade-up">
+      <h2 data-key="kegiatan-title">Kegiatan & Mahasiswa</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item" data-aos="flip-left">
+        <img src="https://www.matawebsite.com/images/event/1577345352.training_web_design_di_binus_alam_sutera.JPG" alt="Tech Lab & Research">
+        <div class="gallery-overlay">
+          <h4 data-key="galeri-1">Training Web Design</h4>
+        </div>
+      </div>
+      <div class="gallery-item" data-aos="flip-left" data-aos-delay="100">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3oDHPnhP6g3vM7UBEp31cJEpuXD-SAI3n-yMJxD-SRdjYJ_gRRpuQL0E&s=10" alt="Student Life">
+        <div class="gallery-overlay">
+          <h4 data-key="galeri-2">Pelantikan Ketua Organisasi Kemahasiswaan</h4>
+        </div>
+      </div>
+      <div class="gallery-item" data-aos="flip-left" data-aos-delay="200">
+        <img src="https://pbs.twimg.com/media/CyaSsKhUoAAx_RV.jpg" alt="Global Seminar">
+        <div class="gallery-overlay">
+          <h4 data-key="galeri-3">Seminar & Workshop Internasional</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPMB Section -->
+  <section id="spmb">
+    <div class="section-title" data-aos="fade-up">
+      <h2 data-key="spmb-title">Pendaftaran Mahasiswa Baru (PMB)</h2>
+    </div>
+    <div class="spmb-box" data-aos="fade-up">
+      <form id="spmbForm">
+        <div class="form-group">
+          <label for="nama" data-key="form-nama">Nama Lengkap Calon Mahasiswa</label>
+          <input type="text" id="nama" class="form-control" placeholder="Masukkan nama lengkap" required>
+        </div>
+        <div class="form-group">
+          <label for="email" data-key="form-email">Email / Nomor WhatsApp</label>
+          <input type="text" id="email" class="form-control" placeholder="Email atau No. WhatsApp" required>
+        </div>
+        <div class="form-group">
+          <label for="jurusan" data-key="form-jurusan">Pilihan Program Studi / Jurusan</label>
+          <select id="jurusan" class="form-control">
+            <option value="">Pilih Program Studi</option>
+            <option value="Teknik Informatika">Teknik Informatika</option>
+            <option value="Business Creation">Business Creation</option>
+            <option value="Sistem Informasi">Sistem Informasi</option>
+            <option value="International Marketing">International Marketing</option>
+            <option value="International Business Management">International Business Management</option>
+            <option value="Finance">Finance</option>
+            <option value="Akuntansi">Akuntansi</option>
+            <option value="Manajemen">Manajemen</option>
+            <option value="DKV New Media">DKV New Media</option>
+            <option value="DKV Animasi">DKV Animasi</option>
+            <option value="Mass Communication">Mass Communication</option>
+            <option value="Marketing Communication">Marketing Communication</option>
+            <option value="Food Technology">Food Technology</option>
+            <option value="Sastra Cina">Sastra Cina</option>
+            <option value="Film">Film</option>
+            <option value="Magister Manajemen untuk S1 dan S2">Magister Manajemen untuk S1 dan S2</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;" data-key="form-btn">Kirim Formulir Pendaftaran</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Kontak Section -->
+  <section id="kontak">
+    <div class="section-title" data-aos="fade-up">
+      <h2 data-key="kontak-title">Hubungi & Kunjungi Kami</h2>
+    </div>
+    <div class="kontak-grid" data-aos="fade-up">
+      <div>
+        <h3 data-key="kontak-info">Informasi Kontak</h3>
+        <p style="margin: 1rem 0;"><i class="fa-solid fa-location-dot"></i> Jl. Jalur Sutera Barat No.9, Alam Sutera, Serpong, Tangerang 15143</p>
+        <p style="margin-bottom: 0.5rem;"><i class="fa-solid fa-phone"></i> (021) 29779100 / 0804 169 6969</p>
+        <p style="margin-bottom: 1rem;"><i class="fa-solid fa-envelope"></i> pmbbinus@binus.edu</p>
+        
+        <h4 data-key="social-follow">Ikuti Kami:</h4>
+        <div class="social-links">
+          <a href="https://www.facebook.com/binusuniversityofficial/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/binusuniversityofficial/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@BINUSUniversityOfficial" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://wa.me/6281808045199" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.306945664531!2d106.6464598737801!3d-6.223197460946978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fb20a9906e13%3A0xf75c5296d0a385e4!2sUniversitas%20Bina%20Nusantara%20(BINUS)%20Alam%20Sutera!5e0!3m2!1sid!2sid!4v1789567055354!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"> " width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe> 
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/6281808045199?text=Halo%20Admissions%20BINUS%20University%20Alam%20Sutera,%20saya%20ingin%20bertanya%20informasi%20pendaftaran" class="wa-float" target="_blank" title="Chat via WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 BINUS University Alam Sutera. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
+    // Dark Mode Toggle Logic
+    const toggleBtn = document.getElementById('themeToggle');
+    const icon = toggleBtn.querySelector('i');
+
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      if (document.body.classList.contains('dark-mode')) {
+        icon.classList.replace('fa-moon', 'fa-sun');
+      } else {
+        icon.classList.replace('fa-sun', 'fa-moon');
+      }
+    });
+
+    // Language Switcher Logic
+    const translations = {
+      id: {
+        "ticker": "📢 <b>PENGUMUMAN:</b> Pendaftaran Mahasiswa Baru (PMB) BINUS University Alam Sutera TA 2026/2027 telah dibuka! Dapatkan beasiswa dan jalur konsultasi pendaftaran melalui kontak kami.",
+        "nav-beranda": "Beranda",
+        "nav-profil": "Profil",
+        "nav-layanan": "Layanan",
+        "nav-kegiatan": "Kegiatan",
+        "nav-kontak": "Kontak",
+        "nav-spmb": "Admissions",
+        "hero-title": "BINUS University Alam Sutera",
+        "hero-desc": "Smart Campus Berbasis Teknologi Komputasi & Inovasi Global untuk Membentuk Pemimpin Dunia Digital Masa Depan.",
+        "hero-btn": "Daftar PMB Sekarang <i class=\"fa-solid fa-arrow-right\"></i>",
+        "profil-title": "Profil Kampus",
+        "visi-title": "Visi & Misi",
+        "visi-desc": "Menjadi perguruan tinggi berkelas dunia yang membina dan memberdayakan masyarakat dalam membangun serta melayani bangsa.",
+        "visi-point1": "Program Enrichment 3+1 (Magang, Startup, Riset, Studi Luar Negeri)",
+        "visi-point2": "Fasilitas Smart Campus Berteknologi Modern & Green Building",
+        "visi-point3": "Kemitraan Industri Global & Akreditasi Internasional",
+        "layanan-title": "Layanan Digital & Akademik",
+        "layanan-1": "BINUS Maya Portal",
+        "layanan-2": "BINUS Career Center",
+        "layanan-3": "Global Exchange Program",
+        "layanan-4": "BINUS StartUp Accelerator",
+        "kegiatan-title": "Kegiatan & Mahasiswa",
+        "galeri-1": "Training Web Design",
+        "galeri-2": "Pelantikan Ketua Organisasi Kemahasiswaan",
+        "galeri-3": "Seminar & Workshop Internasional",
+        "spmb-title": "Pendaftaran Mahasiswa Baru (PMB)",
+        "form-nama": "Nama Lengkap Calon Mahasiswa",
+        "form-email": "Email / Nomor WhatsApp",
+        "form-jurusan": "Pilihan Program Studi / Jurusan",
+        "form-btn": "Kirim Formulir Pendaftaran",
+        "kontak-title": "Hubungi & Kunjungi Kami",
+        "kontak-info": "Informasi Kontak",
+        "social-follow": "Ikuti Kami:"
+      },
+      en: {
+        "ticker": "📢 <b>ANNOUNCEMENT:</b> Admissions for BINUS University Alam Sutera AY 2026/2027 are now open! Get scholarship information by contacting us.",
+        "nav-beranda": "Home",
+        "nav-profil": "Profile",
+        "nav-layanan": "Services",
+        "nav-kegiatan": "Activities",
+        "nav-kontak": "Contact",
+        "nav-spmb": "Admissions",
+        "hero-title": "BINUS University Alam Sutera",
+        "hero-desc": "Smart Campus Powered by Computing Technology & Global Innovation Nurturing Future Digital Leaders.",
+        "hero-btn": "Apply for Admissions <i class=\"fa-solid fa-arrow-right\"></i>",
+        "profil-title": "Campus Profile",
+        "visi-title": "Vision & Mission",
+        "visi-desc": "A world-class university in fostering and empowering the society in building and serving the nation.",
+        "visi-point1": "3+1 Enrichment Program (Internship, Startup, Research, Study Abroad)",
+        "visi-point2": "Modern Smart Campus & Eco-Friendly Facilities",
+        "visi-point3": "Global Industry Partnerships & International Accreditation",
+        "layanan-title": "Digital & Academic Services",
+        "layanan-1": "BINUS Maya Portal",
+        "layanan-2": "BINUS Career Center",
+        "layanan-3": "Global Exchange Program",
+        "layanan-4": "BINUS StartUp Accelerator",
+        "kegiatan-title": "Student Activities & Life",
+        "galeri-1": "Web Design Training",
+        "galeri-2": "Inauguration of Student Organization Leaders",
+        "galeri-3": "International Seminars & Workshops",
+        "spmb-title": "New Student Admissions",
+        "form-nama": "Applicant's Full Name",
+        "form-email": "Email / Active WhatsApp Number",
+        "form-jurusan": "Select Major / Program",
+        "form-btn": "Submit Application",
+        "kontak-title": "Contact & Visit Us",
+        "kontak-info": "Contact Information",
+        "social-follow": "Follow Us:"
+      }
+    };
+
+    let currentLang = 'id';
+    const langToggleBtn = document.getElementById('langToggle');
+    const langText = document.getElementById('langText');
+    const tickerText = document.getElementById('tickerText');
+
+    langToggleBtn.addEventListener('click', () => {
+      currentLang = currentLang === 'id' ? 'en' : 'id';
+      langText.textContent = currentLang === 'id' ? 'EN' : 'ID';
+      
+      // Update marquee text
+      tickerText.innerHTML = translations[currentLang]["ticker"];
+
+      // Update elements with data-key attribute
+      document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (translations[currentLang][key]) {
+          el.innerHTML = translations[currentLang][key];
+        }
+      });
+    });
+
+    // Form Handler
+    document.getElementById('spmbForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const msg = currentLang === 'id' 
+        ? 'Pendaftaran Berhasil Dikirim! Tim Admissions BINUS University Alam Sutera akan segera menghubungi Anda.' 
+        : 'Application submitted successfully! The BINUS University Alam Sutera Admissions team will contact you soon.';
+      alert(msg);
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
